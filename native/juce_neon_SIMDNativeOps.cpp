@@ -34,7 +34,6 @@ namespace juce
       #if defined(_M_ARM) || defined(__arm64__) || defined(__aarch64__)
         DEFINE_NEON_SIMD_CONST (int64_t, double, kAllBitsSet)  = { -1LL, -1LL };
         DEFINE_NEON_SIMD_CONST (int64_t, double, kEvenHighBit) = { static_cast<int64_t> (0x8000000000000000), 0 };
-        DEFINE_NEON_SIMD_CONST (double, double, kOne)          = { 1.0, 1.0 };
       #endif
 
         DEFINE_NEON_SIMD_CONST (int8_t, int8_t, kAllBitsSet)     = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };

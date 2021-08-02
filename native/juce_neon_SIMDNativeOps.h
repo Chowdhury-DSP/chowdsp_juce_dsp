@@ -471,7 +471,6 @@ struct SIMDNativeOps<double>
     //==============================================================================
     DECLARE_NEON_SIMD_CONST (int64_t, kAllBitsSet);
     DECLARE_NEON_SIMD_CONST (int64_t, kEvenHighBit);
-    DECLARE_NEON_SIMD_CONST (double, kOne);
 
     static forcedinline vSIMDType expand (double s) noexcept { return vdupq_n_f64 (s); }
     static forcedinline vSIMDType load (const double* a) noexcept { return vld1q_f64 (a); }
@@ -485,7 +484,7 @@ struct SIMDNativeOps<double>
     static forcedinline vSIMDType bit_or (vSIMDType a, vSIMDType b) noexcept { return (vSIMDType) vorrq_u64 ((vMaskType) a, (vMaskType) b); }
     static forcedinline vSIMDType bit_xor (vSIMDType a, vSIMDType b) noexcept { return (vSIMDType) veorq_u64 ((vMaskType) a, (vMaskType) b); }
     static forcedinline vSIMDType bit_notand (vSIMDType a, vSIMDType b) noexcept { return (vSIMDType) vbicq_u64 ((vMaskType) b, (vMaskType) a); }
-    static forcedinline vSIMDType bit_not (vSIMDType a) noexcept { return bit_notand (a, vld1q_f64 ((double*) ckAllBitsSet)); }
+    static forcedinline vSIMDType bit_not (vSIMDType a) noexcept { return bit_notand (a, vld1q_f64 ((double*) kAllBitsSet)); }
     static forcedinline vSIMDType min (vSIMDType a, vSIMDType b) noexcept { return vminq_f64 (a, b); }
     static forcedinline vSIMDType max (vSIMDType a, vSIMDType b) noexcept { return vmaxq_f64 (a, b); }
     static forcedinline vSIMDType equal (vSIMDType a, vSIMDType b) noexcept { return (vSIMDType) vceqq_f64 (a, b); }
@@ -505,7 +504,7 @@ struct SIMDNativeOps<double>
     {
         vSIMDType rr_ir = mul (a, dupeven (b));
         vSIMDType ii_ri = mul (swapevenodd (a), dupodd (b));
-        return add (rr_ir, bit_xor (ii_ri, vld1q_f64 ((double*) ckEvenHighBit)));
+        return add (rr_ir, bit_xor (ii_ri, vld1q_f64 ((double*) kEvenHighBit)));
     }
 
     static forcedinline double sum (vSIMDType a) noexcept

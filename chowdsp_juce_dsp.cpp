@@ -32,7 +32,7 @@
  #error "Incorrect use of JUCE cpp file"
 #endif
 
-#include "juce_dsp.h"
+#include "chowdsp_juce_dsp.h"
 
 #ifndef JUCE_USE_VDSP_FRAMEWORK
  #define JUCE_USE_VDSP_FRAMEWORK 1
