@@ -459,7 +459,7 @@ struct SIMDNativeOps<float>
 
     @tags{DSP}
 */
-#if defined(_M_ARM) || defined(__arm64__) || defined(__aarch64__)
+#if defined(__arm64__) || defined(__aarch64__)
 template <>
 struct SIMDNativeOps<double>
 {
